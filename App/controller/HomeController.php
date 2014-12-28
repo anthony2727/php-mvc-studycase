@@ -9,7 +9,6 @@ class HomeController extends Controller{
 		$user = $this->model('User');
 		$this->view('home', array("name"=>$user->getName(), "lastname"=>$user->getLastname()));
 	}
-
 }
 
 ?>

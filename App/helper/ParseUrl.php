@@ -3,14 +3,19 @@ namespace Anthony\App\helper;
 
 class ParseUrl {
 
-	private $urlParameters;
-
 	public function processUrl($rawRequest){
-		$request = filter_var($rawRequest, FILTER_SANITIZE_URL);
+		$urlParameters = null;
+		$request =$this->filterUrl($rawRequest);
 		if(strlen($request)>0){
-			$urlParameters = explode("/", $request);	
+			$urlParameters = $this->getParameters($request);
 		}
 		return $urlParameters;
+	}
+	public function filterUrl ($url){
+		return filter_var($url, FILTER_SANITIZE_URL);
+	}
+	public function getParameters($url_string){
+		return explode('/',rtrim($url_string,'/'));
 	}
 }
 
